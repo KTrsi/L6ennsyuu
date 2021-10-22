@@ -1,7 +1,24 @@
+<% if @user.errors.present? %>
+   <h3>エラーがあります</h3>
+   <ul>
+   <% @user.errors.full_message.each do |msg| %>
+       <li><%= msg %></li>
+   <% end %>
+   </ul>
+<% end %>
+
 <%= form_for @user, url: {action: :create} do |f| %>
-  <%= f.label :uid, 'uid' %> 
-  <%= f.text_field :uid %> 
-  <%= f.label :pass, 'pass' %> 
-  <%= f.password_field :pass %> 
+  <p>
+    <%= f.label :uid, 'uid' %> 
+    <%= f.text_field :uid %> 
+  </p>
+  <p>
+    <%= f.label :password, 'パスワード' %>
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, 'パスワード(確認)' %>
+    <%= f.password_field :password_confirmation %>
+  </p>
   <%= f.submit '登録' %>
 <% end %>
